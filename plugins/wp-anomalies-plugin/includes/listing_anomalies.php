@@ -12,6 +12,8 @@
  * @copyright Équipe 2 - IGL711
  */
 
+require_once(dirname(__FILE__)."/functions.php");
+
 //Sécurité en cas d'accès direct
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
@@ -68,29 +70,10 @@ $tickets = $wpdb->get_results( $sql );
         </tr>
         <?php
         foreach ($tickets as $ticket){
-
             $raised_by=$ticket->guest_name;
-
-            $modified='';
-            if ($ticket->date_modified_month)  $modified='il y a ' .$ticket->date_modified_month . '  mois';
-            else if ($ticket->date_modified_day) $modified='il y a ' .$ticket->date_modified_day.' jours';
-            else if ($ticket->date_modified_hour)$modified='il y a ' .$ticket->date_modified_hour.' heures';
-            else if ($ticket->date_modified_min) $modified='il y a ' .$ticket->date_modified_min.' minutes';
-            else $modified='il y a ' .$ticket->date_modified_sec.' secondes';
-
-            $status_color='';
-            switch ($ticket->status){
-                case 'nouveau': $status_color='danger';break;
-                case 'assigné': $status_color='warning';break;
-                case 'rejeté': $status_color='info';break;
-                case 'fermé': $status_color='success';break;
-            }
-            $priority_color='';
-            switch ($ticket->priority){
-                case '1': $priority_color='danger';break;
-                case '2': $priority_color='warning';break;
-                case '3': $priority_color='info';break;
-            }
+            $modified=getModificationTimeDescription($ticket);
+            $status_color=getStatusColor($ticket);
+            $priority_color=getPriorityColor($ticket);
 
             echo "<tr class='".$status_color."' style='cursor:pointer;' onclick='window.location.href=\"" . get_permalink(21) . "?ticket_id=" .$ticket->id."\";'>";
             echo "<td>".$ticket->id."</td>";
@@ -117,3 +100,4 @@ $tickets = $wpdb->get_results( $sql );
     <div style="text-align: center;<?php echo ($total_pages==0)? '':'display: none;';?>">Aucune anomalies</div>
     <hr style="<?php echo ($total_pages==0)? '':'display: none;';?>">
 </div>
+

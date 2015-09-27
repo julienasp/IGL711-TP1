@@ -12,6 +12,8 @@
  * @copyright Équipe 2 - IGL711
  */
 
+require_once(dirname(__FILE__)."/functions.php");
+
 /**
  * @var objet $wpdb        Variable global de l'objet Wordpress DateBase
  *
@@ -149,12 +151,7 @@ $categories = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}mga_categories_a
         $user_name=$thread->guest_name;
         $user_email=$thread->guest_email;
 
-        $modified='';
-        if ($thread->date_modified_month) $modified='il y a ' . $thread->date_modified_month.' mois';
-        else if ($thread->date_modified_day) $modified='il y a ' . $thread->date_modified_day.' jours';
-        else if ($thread->date_modified_hour) $modified='il y a ' . $thread->date_modified_hour.' heures';
-        else if ($thread->date_modified_min) $modified='il y a ' . $thread->date_modified_min.' minutes';
-        else $modified='il y a ' . $thread->date_modified_sec.' secondes';
+        $modified=getModificationTimeDescription($thread);
 
         $body=stripcslashes($thread->body);
         $body = preg_replace("/(\r\n|\n|\r)/", '<br>', $body);
