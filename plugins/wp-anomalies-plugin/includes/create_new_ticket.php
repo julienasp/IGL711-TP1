@@ -6,6 +6,12 @@
  * Time: 6:50 PM
  */
 
+/**
+ * create_new_ticket.php
+ * @author Julien Aspirot <julien.aspirot@usherbrooke.ca>
+ * @copyright Équipe 2 - IGL711
+ */
+
 //Variable global pour l'accès à la base de données
 global $wpdb;
 
@@ -33,8 +39,11 @@ if( isset($_POST['action']) && $_POST['action'] == "createNewTicket" )
         'update_time'=>current_time('mysql', 1),
         'priority'=>$_POST['create_ticket_priority']
     );
+    //Insersion des données contenues dans $values dans la table mga_anomalies
     $wpdb->insert($wpdb->prefix.'mga_anomalies',$values);
 }
+
+//La suite consiste à l'utilisation de la variable catégories et ses informations dans le template HTML ci-dessous
 ?>
 
 <div class="tab-pane" id="create_ticket">
