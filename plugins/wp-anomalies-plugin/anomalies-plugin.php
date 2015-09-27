@@ -7,22 +7,48 @@
  * Author: Julien Aspirot
  */
 
+/**
+ * Anomalies-plugin.php
+ * @author Julien Aspirot <julien.aspirot@usherbrooke.ca>
+ * @copyright Équipe 2 - IGL711
+ */
+
+//Sécurité en cas d'accès direct
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+//Lorsque le plugin est activé la fonction installation est appellé
 register_activation_hook( __FILE__, installation ) ;
+
+/**
+ * Fonction installation()
+ * S'occupe d'inclure les fichiers importants du plugin.
+ */
 function installation()
 {
+    //create_bd.php s'occupe de bâtir l'infrastructure de notre base de données
     include_once(plugin_dir_path(__FILE__) . 'includes/create_bd.php');
 }
 
 //Inclusion de tous les fichiers nécessaires
 include_once(plugin_dir_path(__FILE__) . 'includes/create_bd.php'); //S'assure que les tables sont présentes
 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//Ajout d'un shortcode [mga_shortcode_ajout] permettant de générer le code necessaire à l'ajout des anomalies
 add_shortcode( 'mga_shortcode_ajout','mga_shortcode_ajout' );
 
+/**
+ * Fonction mga_shortcode_ajout()
+ * S'occupe de générer tout le code html, css et php pour l'ajout d'une anomalie.
+ */
 function mga_shortcode_ajout(){
     ob_start();
     echo '<div class="support_bs">';
@@ -31,8 +57,13 @@ function mga_shortcode_ajout(){
     return ob_get_clean();
 }
 
+//Ajout d'un shortcode [mga_shortcode_listing] permettant de générer le code necessaire au listing des anomalies
 add_shortcode( 'mga_shortcode_listing','mga_shortcode_listing' );
 
+/**
+ * Fonction mga_shortcode_listing()
+ * S'occupe de générer tout le code html, css et php pour la table d'énumération des anomalies.
+ */
 function mga_shortcode_listing(){
     ob_start();
     echo '<div class="support_bs">';
@@ -41,8 +72,13 @@ function mga_shortcode_listing(){
     return ob_get_clean();
 }
 
+//Ajout d'un shortcode [mga_shortcode_single] permettant de générer le code necessaire voir et modifier les détails d'une anomalie
 add_shortcode( 'mga_shortcode_single','mga_shortcode_single' );
 
+/**
+ * Fonction mga_shortcode_single()
+ * S'occupe de générer tout le code html, css et php pour afficher les détails d'une anomalie.
+ */
 function mga_shortcode_single(){
     ob_start();
     echo '<div class="support_bs">';
@@ -51,9 +87,14 @@ function mga_shortcode_single(){
     return ob_get_clean();
 }
 
+//Ajout d'actions afin de bien lier tous les fichiers de style et javascript que nous allons ajouter dans le header
 add_action( 'wp_enqueue_scripts', 'loadScripts' );
 add_action( 'wp_enqueue_style', 'loadScripts' );
 
+/**
+ * Fonction loadScripts()
+ * S'occupe de lier tous les fichiers de style .css et les fichiers javascripts que nous allons utiliser.
+ */
 function loadScripts(){
     wp_enqueue_script( 'jquery' );
     wp_enqueue_script( 'jquery-ui-core' );
