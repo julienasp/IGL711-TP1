@@ -54,7 +54,7 @@ $sql.=$limit;
 // La variable ticket contient tous les tuples d'anomalies pour le noPage reçu en HTTP GET
 $tickets = $wpdb->get_results( $sql );
 
-//La suite consiste à l'utilisation de variable tickets et ses informations dans le template HTML ci-dessous
+//La suite consiste à l'utilisation de la variable tickets et ses informations dans le template HTML ci-dessous
 ?>
 <div class="table-responsive">
     <table class="table table-striped table-hover" style="margin-top: 10px;">
