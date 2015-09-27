@@ -1,13 +1,32 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: JUASP-G73
+ * Date: 9/27/2015
+ * Time: 12:14 AM
+ */
+
+/**
+ * listing_anomalies.php
+ * @author Julien Aspirot <julien.aspirot@usherbrooke.ca>
+ * @copyright Équipe 2 - IGL711
+ */
+
+//Sécurité en cas d'accès direct
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
+//Variable global de l'objet Wordpress DateBase
 global $wpdb;
+
+//Variable global pour avoir les informations de l'utilisateur courant
 global $current_user;
 get_currentuserinfo();
 
+//Permet de determiner la page courante avec l'argument noPage reçu en HTTP GET
 $current_page= max( 1, ( isset( $_GET['noPage'] ) ) ? $_GET['noPage'] : 1 );
 
+//Requête SQL pour avoir toutes les anomalies en lien avec notre numéro de page
 $sql="select t.*,c.name as category,
 		TIMESTAMPDIFF(MONTH,t.update_time,UTC_TIMESTAMP()) as date_modified_month,
 		TIMESTAMPDIFF(DAY,t.update_time,UTC_TIMESTAMP()) as date_modified_day,
@@ -16,7 +35,11 @@ $sql="select t.*,c.name as category,
  		TIMESTAMPDIFF(SECOND,t.update_time,UTC_TIMESTAMP()) as date_modified_sec
 		FROM {$wpdb->prefix}mga_anomalies t
 		INNER JOIN {$wpdb->prefix}mga_categories_anomalie c ON t.cat_id=c.id ";
+
+//La liste est trier en ordre de MàJ
 $order_by='ORDER BY t.update_time DESC ';
+
+//On prend 10 tuples à partir de la page ( courante - 1 * 10 ). Donc page 1, nous avons LIMIT 0,10 et pour la page 2 nous avons LIMIT 10,10
 $limit_start=( $current_page -1 ) * 10;
 $limit="LIMIT ".$limit_start.",10 ";
 
@@ -27,7 +50,11 @@ $tickets = $wpdb->get_results( $sql );
 $total_pages=ceil($wpdb->num_rows/10);
 
 $sql.=$limit;
+
+// La variable ticket contient tous les tuples d'anomalies pour le noPage reçu en HTTP GET
 $tickets = $wpdb->get_results( $sql );
+
+//La suite consiste à l'utilisation de variable tickets et ses informations dans le template HTML ci-dessous
 ?>
 <div class="table-responsive">
     <table class="table table-striped table-hover" style="margin-top: 10px;">
