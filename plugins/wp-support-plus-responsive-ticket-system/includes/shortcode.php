@@ -39,7 +39,8 @@ final class WPSupportPlusFrontEnd{
 			include_once( WCE_PLUGIN_DIR.'includes/loggedInUser.php' );
 		}
 		else if($generalSettings['enable_guest_ticket']){
-			include_once( WCE_PLUGIN_DIR.'includes/guestUser.php' );
+			include_once( WCE_PLUGIN_DIR.'includes/loggedInUser.php' );
+			//include_once( WCE_PLUGIN_DIR.'includes/guestUser.php' );
 		}
 		echo '</div>';
 		return ob_get_clean();

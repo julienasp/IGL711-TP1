@@ -52,6 +52,7 @@ final class WPSupportPlus{
 			add_action( 'wp_ajax_setEmailSettings', array( $ajax, 'setEmailSettings' ) );
 		}
 		else {
+			//die('im here');
  			include_once( WCE_PLUGIN_DIR.'includes/shortcode.php' );
  			include_once( WCE_PLUGIN_DIR.'includes/support_button.php' );
 		}

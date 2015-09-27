@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/plugins/wp-anomalies-plugin/includes/create_new_ticket.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/plugins/wp-anomalies-plugin/includes/listing_anomalies.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/plugins/wp-anomalies-plugin/includes/single_anomalie.php" charset="UTF-8" />
+  </component>
+</project>

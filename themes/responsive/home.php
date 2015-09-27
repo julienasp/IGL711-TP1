@@ -24,7 +24,6 @@ get_header();
 global $more;
 $more = 0;
 ?>
-
 	<div id="content-blog" class="<?php echo esc_attr( implode( ' ', responsive_get_content_classes() ) ); ?>">
 
 		<!-- Blog page title -->
@@ -55,7 +54,7 @@ $more = 0;
 					</div>
 					<!-- end of .post-entry -->
 
-					<?php get_template_part( 'post-data', get_post_type() ); ?>
+					<?php //get_template_part( 'post-data', get_post_type() ); ?>
 
 					<?php responsive_entry_bottom(); ?>
 				</div><!-- end of #post-<?php the_ID(); ?> -->
@@ -75,5 +74,5 @@ $more = 0;
 
 	</div><!-- end of #content-blog -->
 
-<?php get_sidebar(); ?>
+
 <?php get_footer(); ?>

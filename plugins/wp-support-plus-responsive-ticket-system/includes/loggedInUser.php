@@ -4,9 +4,8 @@ get_currentuserinfo();
 ?>
 <!-- Nav tabs -->
 <ul class="nav nav-tabs">
-	<li class="active"><a href="#ticketContainer" id="tab_ticket_container" data-toggle="tab">Tickets</a></li>
-	<li><a href="#create_ticket" id="tab_create_ticket" data-toggle="tab">Create New Ticket</a></li>
-	<li><a href="#agent_settings" id="tab_agent_settings" data-toggle="tab">Signature</a></li>
+	<li class="active"><a href="#ticketContainer" id="tab_ticket_container" data-toggle="tab">Anomalies</a></li>
+	<li><a href="#create_ticket" id="tab_create_ticket" data-toggle="tab">Ajouter une nouvelle anomalie</a></li>
 </ul>
 <!-- Tab panes -->
 <div class="tab-content">

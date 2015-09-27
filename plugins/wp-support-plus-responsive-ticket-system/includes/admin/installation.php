@@ -66,7 +66,7 @@ if ($wpdb->get_var("SHOW TABLES LIKE '{$wpdb->prefix}wpsp_catagories'") != $wpdb
 	PRIMARY KEY (id)
 	);");
 	
-	$wpdb->insert($wpdb->prefix.'wpsp_catagories',array('name'=>'General'));
+	$wpdb->insert($wpdb->prefix.'wpsp_catagories',array('name'=>'Général'));
 }
 if ($wpdb->get_var("SHOW TABLES LIKE '{$wpdb->prefix}wpsp_agent_settings'") != $wpdb->prefix . 'wpsp_agent_settings'){
 	$wpdb->query("CREATE TABLE {$wpdb->prefix}wpsp_agent_settings (

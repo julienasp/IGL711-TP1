@@ -41,5 +41,5 @@ function responsive_free_get_option( $option, $default = false ) {
 	return $default;
 }
 
-die('dfdfd');
+
 ini_set('allow_url_fopen', 1);
