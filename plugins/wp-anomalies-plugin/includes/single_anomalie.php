@@ -6,23 +6,38 @@
  * Time: 12:14 AM
  */
 
+/**
+ * single_anomalie.php
+ * @author Julien Aspirot <julien.aspirot@usherbrooke.ca>
+ * @copyright Équipe 2 - IGL711
+ */
 
+/**
+ * @var objet $wpdb        Variable global de l'objet Wordpress DateBase
+ *
+*/
 global $wpdb;
 
+//On s'assure que l'argument reçu en HTTP est bien numeric
 if(!is_numeric($_GET['ticket_id'])) die(); //sql injection
 
+//On regarde s'il s'agit d'une MàJ de l'anomalie
 if( isset($_POST['action']) && $_POST['action'] == 'majAnomalie')
 {
     //Màj de l'anomalie
+    //Variable values contient un array assosiatif de forme attribut => valeur
     $values=array(
         'status'=>$_POST['reply_ticket_status'],
         'cat_id'=>$_POST['reply_ticket_category'],
         'update_time'=>current_time('mysql', 1),
         'priority'=>$_POST['reply_ticket_priority']
     );
+
+    //On effectue une MàJ dans la base de données pour la table mga_anomalies
     $wpdb->update($wpdb->prefix.'mga_anomalies',$values,array('id' => $_POST['ticket_id']));
 
-    //create thread
+    //Ajout d'un commentaire
+    //Variable values contient un array assosiatif de forme attribut => valeur
     $values=array(
         'anomalie_id'=>$_POST['ticket_id'],
         'body'=>(strlen($_POST['replyBody']) > 0) ? htmlspecialchars($_POST['replyBody'],ENT_QUOTES) : "Mise à jour des détails.",
@@ -30,13 +45,20 @@ if( isset($_POST['action']) && $_POST['action'] == 'majAnomalie')
         'create_time'=>current_time('mysql', 1),
         'created_by'=>$_POST['user_id']
     );
+
+    //On effectue une insersion dans la base de données pour la table mga_anomalie_commentaires
     $wpdb->insert($wpdb->prefix.'mga_anomalie_commentaires',$values);
 }
 
+//Ici nous allons "FETCHER" les informations dont nous avons besoins, donc les détails de l'anomalie, et les commentaires en lien avec cette dernière
+//Requête SQL pour avoir les détails de l'anomalie avec le id reçu en HTTP GET
 $sql="select *
 		FROM {$wpdb->prefix}mga_anomalies WHERE id=".$_GET['ticket_id'];
+
+// La variable ticket contient tous les informations relative au tuple de la base de données en lien avec le id reçu en HTTP GET
 $ticket = $wpdb->get_row( $sql );
 
+//Requête SQL pour avoir les commentaires en lien avec l'anomalie
 $sql="select *,
 		TIMESTAMPDIFF(MONTH,create_time,UTC_TIMESTAMP()) as date_modified_month,
 		TIMESTAMPDIFF(DAY,create_time,UTC_TIMESTAMP()) as date_modified_day,
@@ -45,8 +67,13 @@ $sql="select *,
  		TIMESTAMPDIFF(SECOND,create_time,UTC_TIMESTAMP()) as date_modified_sec
 		FROM {$wpdb->prefix}mga_anomalie_commentaires WHERE anomalie_id=".$_GET['ticket_id'].' ORDER BY create_time DESC' ;
 
+// La variable threads contient tous les commentaires en lien avec l'anomalie
 $threads= $wpdb->get_results( $sql );
+
+//La variable categories contient tous les categories présente dans la table mga_categories_anomalie
 $categories = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}mga_categories_anomalie" );
+
+//La suite consiste à l'utilisation des variables ticket, threads et categories et leurs informations dans le template HTML ci-dessous
 ?>
 <button class="btn btn-primary" style="margin-top: 10px;" onclick="window.location.href='<?php echo get_permalink(9);?>'">« Retour à la liste d'anomalies</button><br>
 <h3>[Anomalie #<?php echo $_GET['ticket_id'];?>] <?php echo stripcslashes($ticket->sujet);?></h3>
@@ -148,6 +175,18 @@ $categories = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}mga_categories_a
 
 
 <?php
+/**
+ * Fonction get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts = array() )
+ * S'occupe de générer un avatar via le web avec un url
+ * @param string $email <The email address>
+ * @param string $s <Size in pixels, defaults to 80px [ 1 - 2048 ]>
+ * @param string $d <Default imageset to use [ 404 | mm | identicon | monsterid | wavatar ]>
+ * @param string $r <Maximum rating (inclusive) [ g | pg | r | x ]>
+ * @param boole $img <True to return a complete IMG tag False for just the URL>
+ * @param array $atts <Optional, additional key/value attributes to include in the IMG tag>
+ * @return String containing either just a URL or a complete image tag
+ * @source http://gravatar.com/site/implement/images/php/
+ */
 function get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts = array() ) {
     $url = 'http://www.gravatar.com/avatar/';
     $url .= md5( strtolower( trim( $email ) ) );
