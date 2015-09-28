@@ -10,6 +10,7 @@
  * create_bd.php
  * @author Julien Aspirot <julien.aspirot@usherbrooke.ca>
  * @copyright Équipe 2 - IGL711
+ * contient le code pour la création des tables dans la BD de wordpress
  */
 
 //Sécurité en cas d'accès direct

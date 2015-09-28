@@ -10,6 +10,7 @@
  * single_anomalie.php
  * @author Julien Aspirot <julien.aspirot@usherbrooke.ca>
  * @copyright Équipe 2 - IGL711
+ * contient le code PHP pour connaitre les détails d'une anomalie, ainsi que celui pour les MàJ et biensur le code HTML.
  */
 
 require_once(dirname(__FILE__)."/functions.php");

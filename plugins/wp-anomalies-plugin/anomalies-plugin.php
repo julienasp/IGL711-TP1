@@ -11,6 +11,7 @@
  * Anomalies-plugin.php
  * @author Julien Aspirot <julien.aspirot@usherbrooke.ca>
  * @copyright Équipe 2 - IGL711
+ * fichier d'initialisation, wordpress repère dynamiquement ce fichier nous permettant ainsi d'activer ou desactiver le plugin.
  */
 
 //Sécurité en cas d'accès direct

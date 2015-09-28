@@ -10,6 +10,7 @@
  * listing_anomalies.php
  * @author Julien Aspirot <julien.aspirot@usherbrooke.ca>
  * @copyright Équipe 2 - IGL711
+ * Contient le code php qui 'fetch' les anomalies et le code HTML pour afficher la liste d'anomalie
  */
 
 require_once(dirname(__FILE__)."/functions.php");

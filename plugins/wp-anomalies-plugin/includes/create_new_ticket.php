@@ -10,6 +10,7 @@
  * create_new_ticket.php
  * @author Julien Aspirot <julien.aspirot@usherbrooke.ca>
  * @copyright Équipe 2 - IGL711
+ * contient le code php pour l'affichage de certain éléments de la BD et le code HTML pour la création d'un ticket
  */
 
 //Variable global pour l'accès à la base de données
