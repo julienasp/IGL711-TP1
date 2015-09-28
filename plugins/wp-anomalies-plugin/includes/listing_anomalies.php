@@ -15,10 +15,18 @@ require_once(dirname(__FILE__)."/functions.php");
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
-//Variable global de l'objet Wordpress DateBase
+
+/**
+ * \var $wpdb
+ * \brief  Variable global de l'objet Wordpress DateBase
+ */
 global $wpdb;
 
-//Variable global pour avoir les informations de l'utilisateur courant
+
+/**
+ * \var $current_user
+ * \brief  Variable global pour avoir les informations de l'utilisateur courant
+ */
 global $current_user;
 get_currentuserinfo();
 

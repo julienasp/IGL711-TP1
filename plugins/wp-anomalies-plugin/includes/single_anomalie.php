@@ -49,10 +49,9 @@ if( isset($_POST['action']) && $_POST['action'] == 'majAnomalie')
 }
 
 //Ici nous allons "FETCHER" les informations dont nous avons besoins, donc les détails de l'anomalie, et les commentaires en lien avec cette dernière
-//Requête SQL pour avoir les détails de l'anomalie avec le id reçu en HTTP GET
 /**
  * \var $sql
- * \brief equête SQL pour avoir les détails de l'anomalie avec le id reçu en HTTP GET
+ * \brief Requête SQL pour avoir les détails de l'anomalie avec le id reçu en HTTP GET
  */
 $sql="select *
 		FROM {$wpdb->prefix}mga_anomalies WHERE id=".$_GET['ticket_id'];

@@ -10,7 +10,10 @@
  *
  */
 
-//Variable global pour l'accès à la base de données
+/**
+ * \var $wpdb
+ * \brief  Object de WordPress pour intéragir avec la base de données
+ */
 global $wpdb;
 
 //Variable qui contient toutes les catégories d'anomalies
