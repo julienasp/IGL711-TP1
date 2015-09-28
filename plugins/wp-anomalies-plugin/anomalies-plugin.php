@@ -32,7 +32,7 @@ register_activation_hook( __FILE__, installation ) ;
 /**
  * \fn installation()
  * \brief S'occupe d'inclure les fichiers importants du plugin.
- * \output création des tables dans la base de données
+ * \post création des tables dans la base de données
  * \return void
  */
 function installation()
@@ -56,7 +56,7 @@ add_shortcode( 'mga_shortcode_ajout','mga_shortcode_ajout' );
 /**
  * \fn mga_shortcode_ajout()
  * \brief S'occupe de générer tout le code html, css et php pour l'ajout d'une anomalie.
- * \output création d'un shortcode wordpress, qui contient du code html, css et php.
+ * \post création d'un shortcode wordpress, qui contient du code html, css et php.
  * \return void
  */
 function mga_shortcode_ajout(){
@@ -74,7 +74,7 @@ add_shortcode( 'mga_shortcode_listing','mga_shortcode_listing' );
 /**
  * \fn mga_shortcode_listing()
  * \brief S'occupe de générer tout le code html, css et php pour la table d'énumération des anomalies.
- * \output création d'un shortcode wordpress, qui contient du code html, css et php.
+ * \post création d'un shortcode wordpress, qui contient du code html, css et php.
  * \return void
  */
 function mga_shortcode_listing(){
@@ -92,7 +92,7 @@ add_shortcode( 'mga_shortcode_single','mga_shortcode_single' );
 /**
  * \fn mga_shortcode_single()
  * \brief S'occupe de générer tout le code html, css et php pour afficher les détails d'une anomalie.
- * \output création d'un shortcode wordpress, qui contient du code html, css et php.
+ * \post création d'un shortcode wordpress, qui contient du code html, css et php.
  * \return void
  */
 function mga_shortcode_single(){
@@ -114,7 +114,7 @@ add_action( 'wp_enqueue_style', 'loadScripts' );
 /**
  * \fn loadScripts()
  * \brief S'occupe de lier tous les fichiers de style .css et les fichiers javascripts que nous allons utiliser.
- * \output les libraries et les fichiers de style sont ajoutés à leurs files Wordpress correspondante.
+ * \post les libraries et les fichiers de style sont ajoutés à leurs files Wordpress correspondante.
  * \return void
  */
 function loadScripts(){
