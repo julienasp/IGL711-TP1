@@ -1,23 +1,23 @@
 <?php
 /**
  * \file create_bd.php
- * Contient le code pour la création des tables dans la BD de wordpress.
+ * Contient le code pour la crÃ©ation des tables dans la BD de wordpress.
  * \author Julien Aspirot <julien.aspirot@usherbrooke.ca>
- * \brief  Contient le code pour la création des tables dans la BD de wordpress.
+ * \brief  Contient le code pour la crÃ©ation des tables dans la BD de wordpress.
  * \date 26/09/2015
- * \copyright Équipe 2 - IGL711
+ * \copyright Ã‰quipe 2 - IGL711
  *
  */
 
-//Sécurité en cas d'accès direct
+//SÃ©curitÃ© en cas d'accÃ¨s direct
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
 
-//Variable global pour l'accès à la base de données
+//Variable global pour l'accÃ¨s Ã  la base de donnÃ©es
 global $wpdb;
 
-//Création des tables pour la gestion des anomalies
+//CrÃ©ation des tables pour la gestion des anomalies
 
 //On valide que la table mga_anomalies n'existe pas et si c'est le cas alors on la fabrique
 if ($wpdb->get_var("SHOW TABLES LIKE '{$wpdb->prefix}mga_anomalies'") != $wpdb->prefix . 'mga_anomalies'){
@@ -50,7 +50,7 @@ if ($wpdb->get_var("SHOW TABLES LIKE '{$wpdb->prefix}mga_categories_anomalie'") 
 	PRIMARY KEY (id)
 	);");
 
-	//Insersion des catégories de base. Soit Général, Logiciel et Autre
+	//Insersion des catÃ©gories de base. Soit GÃ©nÃ©ral, Logiciel et Autre
     $wpdb->insert($wpdb->prefix.'mga_categories_anomalie',array('name'=>'General'));
     $wpdb->insert($wpdb->prefix.'mga_categories_anomalie',array('name'=>'Logiciel'));
     $wpdb->insert($wpdb->prefix.'mga_categories_anomalie',array('name'=>'Autre'));
@@ -70,4 +70,4 @@ if ($wpdb->get_var("SHOW TABLES LIKE '{$wpdb->prefix}mga_anomalie_commentaires'"
 	PRIMARY KEY (id)
 	);");
 }
-//Fin de la création des tables pour la BD
+//Fin de la crÃ©ation des tables pour la BD

@@ -1,8 +1,6 @@
 <?php
 /**
  * \file single_anomalie.php
- * Fichier d'initialisation, wordpress repère dynamiquement ce fichier nous permettant ainsi d'activer ou desactiver le plugin.
- * Lorsque Wordpress active ou desactive le plugin ce fichier sera executé.
  * \author Julien Aspirot <julien.aspirot@usherbrooke.ca>
  * \brief  Contient le code PHP pour connaitre les détails d'une anomalie, ainsi que celui pour les MàJ et biensur le code HTML.
  * \date 26/09/2015

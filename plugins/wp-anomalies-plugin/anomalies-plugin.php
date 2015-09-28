@@ -2,23 +2,23 @@
 /**
  * Plugin Name: Plugin de gestion d'anomalies
  * Description: Mini gestionnaires d'anomalies pour le Travail pratique 1 du cours IGL711
- * License: Èducation
+ * License: √©ducation
  * Version: 0.0.1
  * Author: Julien Aspirot
  */
 
 /**
  * \file anomalies-plugin.php
- * Fichier d'initialisation, wordpress repËre dynamiquement ce fichier nous permettant ainsi d'activer ou desactiver le plugin.
- * Lorsque Wordpress active ou desactive le plugin ce fichier sera executÈ.
+ * Fichier d'initialisation, wordpress rep√®re dynamiquement ce fichier nous permettant ainsi d'activer ou desactiver le plugin.
+ * Lorsque Wordpress active ou desactive le plugin ce fichier sera execut√©.
  * \author Julien Aspirot <julien.aspirot@usherbrooke.ca>
- * \brief     Fichier d'initialisation, wordpress repËre dynamiquement ce fichier nous permettant ainsi d'activer ou desactiver le plugin.
+ * \brief     Fichier d'initialisation, wordpress rep√®re dynamiquement ce fichier nous permettant ainsi d'activer ou desactiver le plugin.
  * \date 26/09/2015
- * \copyright …quipe 2 - IGL711
+ * \copyright √âquipe 2 - IGL711
  *
  */
 
-//SÈcuritÈ en cas d'accËs direct
+//S√©curit√© en cas d'acc√®s direct
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
@@ -26,37 +26,37 @@ if ( ! defined( 'ABSPATH' ) ) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//Lorsque le plugin est activÈ la fonction installation est appellÈ
+//Lorsque le plugin est activ√© la fonction installation est appell√©
 register_activation_hook( __FILE__, installation ) ;
 
 /**
  * \fn installation()
  * \brief S'occupe d'inclure les fichiers importants du plugin.
- * \post crÈation des tables dans la base de donnÈes
+ * \post cr√©ation des tables dans la base de donn√©es
  * \return void
  */
 function installation()
 {
-    //create_bd.php s'occupe de b‚tir l'infrastructure de notre base de donnÈes
+    //create_bd.php s'occupe de b√¢tir l'infrastructure de notre base de donn√©es
     include_once(plugin_dir_path(__FILE__) . 'includes/create_bd.php');
 }
 
-//Inclusion de tous les fichiers nÈcessaires
-include_once(plugin_dir_path(__FILE__) . 'includes/create_bd.php'); //S'assure que les tables sont prÈsentes
+//Inclusion de tous les fichiers n√©cessaires
+include_once(plugin_dir_path(__FILE__) . 'includes/create_bd.php'); //S'assure que les tables sont pr√©sentes
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//Ajout d'un shortcode [mga_shortcode_ajout] permettant de gÈnÈrer le code necessaire ‡ l'ajout des anomalies
+//Ajout d'un shortcode [mga_shortcode_ajout] permettant de g√©n√©rer le code necessaire √† l'ajout des anomalies
 add_shortcode( 'mga_shortcode_ajout','mga_shortcode_ajout' );
 
 
 /**
  * \fn mga_shortcode_ajout()
- * \brief S'occupe de gÈnÈrer tout le code html, css et php pour l'ajout d'une anomalie.
- * \post crÈation d'un shortcode wordpress, qui contient du code html, css et php.
+ * \brief S'occupe de g√©n√©rer tout le code html, css et php pour l'ajout d'une anomalie.
+ * \post cr√©ation d'un shortcode wordpress, qui contient du code html, css et php.
  * \return void
  */
 function mga_shortcode_ajout(){
@@ -67,14 +67,14 @@ function mga_shortcode_ajout(){
     return ob_get_clean();
 }
 
-//Ajout d'un shortcode [mga_shortcode_listing] permettant de gÈnÈrer le code necessaire au listing des anomalies
+//Ajout d'un shortcode [mga_shortcode_listing] permettant de g√©n√©rer le code necessaire au listing des anomalies
 add_shortcode( 'mga_shortcode_listing','mga_shortcode_listing' );
 
 
 /**
  * \fn mga_shortcode_listing()
- * \brief S'occupe de gÈnÈrer tout le code html, css et php pour la table d'ÈnumÈration des anomalies.
- * \post crÈation d'un shortcode wordpress, qui contient du code html, css et php.
+ * \brief S'occupe de g√©n√©rer tout le code html, css et php pour la table d'√©num√©ration des anomalies.
+ * \post cr√©ation d'un shortcode wordpress, qui contient du code html, css et php.
  * \return void
  */
 function mga_shortcode_listing(){
@@ -85,14 +85,14 @@ function mga_shortcode_listing(){
     return ob_get_clean();
 }
 
-//Ajout d'un shortcode [mga_shortcode_single] permettant de gÈnÈrer le code necessaire voir et modifier les dÈtails d'une anomalie
+//Ajout d'un shortcode [mga_shortcode_single] permettant de g√©n√©rer le code necessaire voir et modifier les d√©tails d'une anomalie
 add_shortcode( 'mga_shortcode_single','mga_shortcode_single' );
 
 
 /**
  * \fn mga_shortcode_single()
- * \brief S'occupe de gÈnÈrer tout le code html, css et php pour afficher les dÈtails d'une anomalie.
- * \post crÈation d'un shortcode wordpress, qui contient du code html, css et php.
+ * \brief S'occupe de g√©n√©rer tout le code html, css et php pour afficher les d√©tails d'une anomalie.
+ * \post cr√©ation d'un shortcode wordpress, qui contient du code html, css et php.
  * \return void
  */
 function mga_shortcode_single(){
@@ -114,7 +114,7 @@ add_action( 'wp_enqueue_style', 'loadScripts' );
 /**
  * \fn loadScripts()
  * \brief S'occupe de lier tous les fichiers de style .css et les fichiers javascripts que nous allons utiliser.
- * \post les libraries et les fichiers de style sont ajoutÈs ‡ leurs files Wordpress correspondante.
+ * \post les libraries et les fichiers de style sont ajout√©s √† leurs files Wordpress correspondante.
  * \return void
  */
 function loadScripts(){
