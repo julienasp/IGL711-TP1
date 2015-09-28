@@ -8,10 +8,14 @@
  */
 
 /**
- * Anomalies-plugin.php
- * @author Julien Aspirot <julien.aspirot@usherbrooke.ca>
- * @copyright Équipe 2 - IGL711
- * fichier d'initialisation, wordpress repère dynamiquement ce fichier nous permettant ainsi d'activer ou desactiver le plugin.
+ * \file anomalies-plugin.php
+ * Fichier d'initialisation, wordpress repère dynamiquement ce fichier nous permettant ainsi d'activer ou desactiver le plugin.
+ * Lorsque Wordpress active ou desactive le plugin ce fichier sera executé.
+ * \author Julien Aspirot <julien.aspirot@usherbrooke.ca>
+ * \brief     Fichier d'initialisation, wordpress repère dynamiquement ce fichier nous permettant ainsi d'activer ou desactiver le plugin.
+ * \date 26/09/2015
+ * \copyright Équipe 2 - IGL711
+ *
  */
 
 //Sécurité en cas d'accès direct
@@ -26,8 +30,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 register_activation_hook( __FILE__, installation ) ;
 
 /**
- * Fonction installation()
- * S'occupe d'inclure les fichiers importants du plugin.
+ * \fn installation()
+ * \brief S'occupe d'inclure les fichiers importants du plugin.
+ * \output création des tables dans la base de données
+ * \return void
  */
 function installation()
 {
@@ -46,9 +52,12 @@ include_once(plugin_dir_path(__FILE__) . 'includes/create_bd.php'); //S'assure q
 //Ajout d'un shortcode [mga_shortcode_ajout] permettant de générer le code necessaire à l'ajout des anomalies
 add_shortcode( 'mga_shortcode_ajout','mga_shortcode_ajout' );
 
+
 /**
- * Fonction mga_shortcode_ajout()
- * S'occupe de générer tout le code html, css et php pour l'ajout d'une anomalie.
+ * \fn mga_shortcode_ajout()
+ * \brief S'occupe de générer tout le code html, css et php pour l'ajout d'une anomalie.
+ * \output création d'un shortcode wordpress, qui contient du code html, css et php.
+ * \return void
  */
 function mga_shortcode_ajout(){
     ob_start();
@@ -61,9 +70,12 @@ function mga_shortcode_ajout(){
 //Ajout d'un shortcode [mga_shortcode_listing] permettant de générer le code necessaire au listing des anomalies
 add_shortcode( 'mga_shortcode_listing','mga_shortcode_listing' );
 
+
 /**
- * Fonction mga_shortcode_listing()
- * S'occupe de générer tout le code html, css et php pour la table d'énumération des anomalies.
+ * \fn mga_shortcode_listing()
+ * \brief S'occupe de générer tout le code html, css et php pour la table d'énumération des anomalies.
+ * \output création d'un shortcode wordpress, qui contient du code html, css et php.
+ * \return void
  */
 function mga_shortcode_listing(){
     ob_start();
@@ -76,9 +88,12 @@ function mga_shortcode_listing(){
 //Ajout d'un shortcode [mga_shortcode_single] permettant de générer le code necessaire voir et modifier les détails d'une anomalie
 add_shortcode( 'mga_shortcode_single','mga_shortcode_single' );
 
+
 /**
- * Fonction mga_shortcode_single()
- * S'occupe de générer tout le code html, css et php pour afficher les détails d'une anomalie.
+ * \fn mga_shortcode_single()
+ * \brief S'occupe de générer tout le code html, css et php pour afficher les détails d'une anomalie.
+ * \output création d'un shortcode wordpress, qui contient du code html, css et php.
+ * \return void
  */
 function mga_shortcode_single(){
     ob_start();
@@ -93,8 +108,14 @@ add_action( 'wp_enqueue_scripts', 'loadScripts' );
 add_action( 'wp_enqueue_style', 'loadScripts' );
 
 /**
- * Fonction loadScripts()
- * S'occupe de lier tous les fichiers de style .css et les fichiers javascripts que nous allons utiliser.
+ * Fonction
+ *
+ */
+/**
+ * \fn loadScripts()
+ * \brief S'occupe de lier tous les fichiers de style .css et les fichiers javascripts que nous allons utiliser.
+ * \output les libraries et les fichiers de style sont ajoutés à leurs files Wordpress correspondante.
+ * \return void
  */
 function loadScripts(){
     wp_enqueue_script( 'jquery' );
