@@ -2,7 +2,7 @@
 
 /**
  * \file functions.php
- * Contient des fonctions utiles
+ * \brief Contient des fonctions utiles
  * \author Éric Bergeron <eric.master.bergeron@usherbrooke.ca>
  * \copyright Équipe 2 - IGL711
  * \date 26/09/2015
