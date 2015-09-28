@@ -1,16 +1,13 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: JUASP-G73
- * Date: 9/26/2015
- * Time: 6:50 PM
- */
 
 /**
- * create_new_ticket.php
- * @author Julien Aspirot <julien.aspirot@usherbrooke.ca>
- * @copyright Équipe 2 - IGL711
- * contient le code php pour l'affichage de certain éléments de la BD et le code HTML pour la création d'un ticket
+ * \file create_new_ticket.php
+ * Contient le code php pour l'affichage de certain éléments de la BD et le code HTML pour la création d'un ticket.
+ * \author Julien Aspirot <julien.aspirot@usherbrooke.ca>
+ * \brief  contient le code php pour l'affichage de certain éléments de la BD et le code HTML pour la création d'un ticket
+ * \date 26/09/2015
+ * \copyright Équipe 2 - IGL711
+ *
  */
 
 //Variable global pour l'accès à la base de données

@@ -1,16 +1,13 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: JUASP-G73
- * Date: 9/27/2015
- * Time: 12:14 AM
- */
-
-/**
- * single_anomalie.php
- * @author Julien Aspirot <julien.aspirot@usherbrooke.ca>
- * @copyright Équipe 2 - IGL711
- * contient le code PHP pour connaitre les détails d'une anomalie, ainsi que celui pour les MàJ et biensur le code HTML.
+ * \file single_anomalie.php
+ * Fichier d'initialisation, wordpress repère dynamiquement ce fichier nous permettant ainsi d'activer ou desactiver le plugin.
+ * Lorsque Wordpress active ou desactive le plugin ce fichier sera executé.
+ * \author Julien Aspirot <julien.aspirot@usherbrooke.ca>
+ * \brief  Contient le code PHP pour connaitre les détails d'une anomalie, ainsi que celui pour les MàJ et biensur le code HTML.
+ * \date 26/09/2015
+ * \copyright Équipe 2 - IGL711
+ *
  */
 
 require_once(dirname(__FILE__)."/functions.php");
@@ -170,31 +167,3 @@ $categories = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}mga_categories_a
     </div>
 <?php }?>
 
-
-
-<?php
-/**
- * Fonction get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts = array() )
- * S'occupe de générer un avatar via le web avec un url
- * @param string $email <The email address>
- * @param string $s <Size in pixels, defaults to 80px [ 1 - 2048 ]>
- * @param string $d <Default imageset to use [ 404 | mm | identicon | monsterid | wavatar ]>
- * @param string $r <Maximum rating (inclusive) [ g | pg | r | x ]>
- * @param boole $img <True to return a complete IMG tag False for just the URL>
- * @param array $atts <Optional, additional key/value attributes to include in the IMG tag>
- * @return String containing either just a URL or a complete image tag
- * @source http://gravatar.com/site/implement/images/php/
- */
-function get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts = array() ) {
-    $url = 'http://www.gravatar.com/avatar/';
-    $url .= md5( strtolower( trim( $email ) ) );
-    $url .= "?s=$s&d=$d&r=$r";
-    if ( $img ) {
-        $url = '<img src="' . $url . '"';
-        foreach ( $atts as $key => $val )
-            $url .= ' ' . $key . '="' . $val . '"';
-        $url .= ' />';
-    }
-    return $url;
-}
-?>

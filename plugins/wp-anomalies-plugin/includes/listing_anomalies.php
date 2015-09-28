@@ -1,16 +1,12 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: JUASP-G73
- * Date: 9/27/2015
- * Time: 12:14 AM
- */
-
-/**
- * listing_anomalies.php
- * @author Julien Aspirot <julien.aspirot@usherbrooke.ca>
- * @copyright Équipe 2 - IGL711
- * Contient le code php qui 'fetch' les anomalies et le code HTML pour afficher la liste d'anomalie
+ * \file listing_anomalies.php
+ * Contient le code php qui 'fetch' les anomalies et le code HTML pour afficher la liste d'anomalie.
+ * \author Julien Aspirot <julien.aspirot@usherbrooke.ca>
+ * \brief     Contient le code php qui 'fetch' les anomalies et le code HTML pour afficher la liste d'anomalie
+ * \date 26/09/2015
+ * \copyright Équipe 2 - IGL711
+ *
  */
 
 require_once(dirname(__FILE__)."/functions.php");

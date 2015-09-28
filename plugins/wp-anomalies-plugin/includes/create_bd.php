@@ -1,16 +1,12 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: JUASP-G73
- * Date: 9/26/2015
- * Time: 7:09 PM
- */
-
-/**
- * create_bd.php
- * @author Julien Aspirot <julien.aspirot@usherbrooke.ca>
- * @copyright Équipe 2 - IGL711
- * contient le code pour la création des tables dans la BD de wordpress
+ * \file create_bd.php
+ * Contient le code pour la création des tables dans la BD de wordpress.
+ * \author Julien Aspirot <julien.aspirot@usherbrooke.ca>
+ * \brief  Contient le code pour la création des tables dans la BD de wordpress.
+ * \date 26/09/2015
+ * \copyright Équipe 2 - IGL711
+ *
  */
 
 //Sécurité en cas d'accès direct
