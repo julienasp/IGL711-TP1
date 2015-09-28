@@ -11,9 +11,9 @@
 require_once(dirname(__FILE__)."/functions.php");
 
 /**
- * @var objet $wpdb        Variable global de l'objet Wordpress DateBase
- *
-*/
+ * \var $wpdb
+ * \brief  Object de WordPress pour intéragir avec la base de données
+ */
 global $wpdb;
 
 //On s'assure que l'argument reçu en HTTP est bien numeric
@@ -50,10 +50,18 @@ if( isset($_POST['action']) && $_POST['action'] == 'majAnomalie')
 
 //Ici nous allons "FETCHER" les informations dont nous avons besoins, donc les détails de l'anomalie, et les commentaires en lien avec cette dernière
 //Requête SQL pour avoir les détails de l'anomalie avec le id reçu en HTTP GET
+/**
+ * \var $sql
+ * \brief equête SQL pour avoir les détails de l'anomalie avec le id reçu en HTTP GET
+ */
 $sql="select *
 		FROM {$wpdb->prefix}mga_anomalies WHERE id=".$_GET['ticket_id'];
 
-// La variable ticket contient tous les informations relative au tuple de la base de données en lien avec le id reçu en HTTP GET
+
+/**
+ * \var $ticket
+ * \brief  La variable ticket contient tous les informations relative au tuple de la base de données en lien avec le id reçu en HTTP GET
+ */
 $ticket = $wpdb->get_row( $sql );
 
 //Requête SQL pour avoir les commentaires en lien avec l'anomalie
@@ -65,10 +73,17 @@ $sql="select *,
  		TIMESTAMPDIFF(SECOND,create_time,UTC_TIMESTAMP()) as date_modified_sec
 		FROM {$wpdb->prefix}mga_anomalie_commentaires WHERE anomalie_id=".$_GET['ticket_id'].' ORDER BY create_time DESC' ;
 
-// La variable threads contient tous les commentaires en lien avec l'anomalie
+/**
+ * \var $threads
+ * \brief  La variable threads contient tous les commentaires en lien avec l'anomalie
+ */
 $threads= $wpdb->get_results( $sql );
 
-//La variable categories contient tous les categories présente dans la table mga_categories_anomalie
+
+/**
+ * \var $categories
+ * \brief  La variable categories contient tous les categories présente dans la table mga_categories_anomalie
+ */
 $categories = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}mga_categories_anomalie" );
 
 //La suite consiste à l'utilisation des variables ticket, threads et categories et leurs informations dans le template HTML ci-dessous
