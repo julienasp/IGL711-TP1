@@ -79,3 +79,50 @@ function get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts
     }
     return $url;
 }
+
+
+
+/**
+ * \fn get_anomalies_from_page( &$wpdb, $page )
+ * \brief S'occupe de générer un avatar via le web avec un url
+ * \param string $email The email address
+ * \param string $s Size in pixels, defaults to 80px [ 1 - 2048 ]
+ * \return String containing either just a URL or a complete image tag
+ */
+function get_anomalies_from_page( &$wpdb, $page ) {
+    //Requête SQL pour avoir toutes les anomalies en lien avec notre numéro de page
+    $sql="select t.*,c.name as category,
+		TIMESTAMPDIFF(MONTH,t.update_time,UTC_TIMESTAMP()) as date_modified_month,
+		TIMESTAMPDIFF(DAY,t.update_time,UTC_TIMESTAMP()) as date_modified_day,
+		TIMESTAMPDIFF(HOUR,t.update_time,UTC_TIMESTAMP()) as date_modified_hour,
+ 		TIMESTAMPDIFF(MINUTE,t.update_time,UTC_TIMESTAMP()) as date_modified_min,
+ 		TIMESTAMPDIFF(SECOND,t.update_time,UTC_TIMESTAMP()) as date_modified_sec
+		FROM {$wpdb->prefix}mga_anomalies t
+		INNER JOIN {$wpdb->prefix}mga_categories_anomalie c ON t.cat_id=c.id ";
+
+//La liste est trier en ordre de MàJ
+    $order_by='ORDER BY t.update_time DESC ';
+
+//On prend 10 tuples à partir de la page ( courante - 1 * 10 ). Donc page 1, nous avons LIMIT 0,10 et pour la page 2 nous avons LIMIT 10,10
+    $limit_start=( $page -1 ) * 10;
+    $limit="LIMIT ".$limit_start.",10 ";
+
+    $sql.=$order_by;
+    $sql.=$limit;
+    return $wpdb->get_results( $sql );
+}
+
+/**
+ * \fn get_anomalies_from_page( &$wpdb, $page )
+ * \brief S'occupe de générer un avatar via le web avec un url
+ * \param string $email The email address
+ * \param string $s Size in pixels, defaults to 80px [ 1 - 2048 ]
+ * \return String containing either just a URL or a complete image tag
+ */
+function get_count_anomalies( &$wpdb ) {
+    //Requête SQL pour avoir toutes les anomalies en lien avec notre numéro de page
+    $sql="select count(*) as count
+		FROM {$wpdb->prefix}mga_anomalies ";
+    $count = $wpdb->get_results( $sql );
+    return $count[0]->count;
+}

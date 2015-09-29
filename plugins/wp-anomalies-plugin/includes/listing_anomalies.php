@@ -33,33 +33,9 @@ get_currentuserinfo();
 //Permet de determiner la page courante avec l'argument noPage reçu en HTTP GET
 $current_page= max( 1, ( isset( $_GET['noPage'] ) ) ? $_GET['noPage'] : 1 );
 
-//Requête SQL pour avoir toutes les anomalies en lien avec notre numéro de page
-$sql="select t.*,c.name as category,
-		TIMESTAMPDIFF(MONTH,t.update_time,UTC_TIMESTAMP()) as date_modified_month,
-		TIMESTAMPDIFF(DAY,t.update_time,UTC_TIMESTAMP()) as date_modified_day,
-		TIMESTAMPDIFF(HOUR,t.update_time,UTC_TIMESTAMP()) as date_modified_hour,
- 		TIMESTAMPDIFF(MINUTE,t.update_time,UTC_TIMESTAMP()) as date_modified_min,
- 		TIMESTAMPDIFF(SECOND,t.update_time,UTC_TIMESTAMP()) as date_modified_sec
-		FROM {$wpdb->prefix}mga_anomalies t
-		INNER JOIN {$wpdb->prefix}mga_categories_anomalie c ON t.cat_id=c.id ";
-
-//La liste est trier en ordre de MàJ
-$order_by='ORDER BY t.update_time DESC ';
-
-//On prend 10 tuples à partir de la page ( courante - 1 * 10 ). Donc page 1, nous avons LIMIT 0,10 et pour la page 2 nous avons LIMIT 10,10
-$limit_start=( $current_page -1 ) * 10;
-$limit="LIMIT ".$limit_start.",10 ";
-
-
-$sql.=$order_by;
-$tickets = $wpdb->get_results( $sql );
-
-$total_pages=ceil($wpdb->num_rows/10);
-
-$sql.=$limit;
-
+$total_pages=ceil(get_count_anomalies($wpdb)/10);
 // La variable ticket contient tous les tuples d'anomalies pour le noPage reçu en HTTP GET
-$tickets = $wpdb->get_results( $sql );
+$tickets = get_anomalies_from_page($wpdb, $current_page);
 
 //La suite consiste à l'utilisation de la variable tickets et ses informations dans le template HTML ci-dessous
 ?>
@@ -98,7 +74,7 @@ $tickets = $wpdb->get_results( $sql );
     $next_class=($total_pages==$current_page)?'disabled':'';
     ?>
     <ul class="pager" style="<?php echo ($total_pages < 2)? 'display: none;':'';?>">
-        <li class="previous <?php echo $prev_class;?>"><a href="<?php echo the_permalink() . '?noPage='. $prev_page_no; ?>">&larr; Précédentt</a></li>
+        <li class="previous <?php echo $prev_class;?>"><a href="<?php echo the_permalink() . '?noPage='. $prev_page_no; ?>">&larr; Précédent</a></li>
         <li><?php echo $current_page;?> de <?php echo $total_pages;?> Pages</li>
         <li class="next <?php echo $next_class;?>"><a href="<?php echo the_permalink() . '?noPage='. $next_page_no; ?>" >Suivant &rarr;</a></li>
     </ul>
