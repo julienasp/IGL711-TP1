@@ -56,7 +56,7 @@ $tickets = get_anomalies_from_page($wpdb, $current_page);
             $status_color=getStatusColor($ticket);
             $priority_color=getPriorityColor($ticket);
 
-            echo "<tr class='".$status_color."' style='cursor:pointer;' onclick='window.location.href=\"" . get_permalink(21) . "?ticket_id=" .$ticket->id."\";'>";
+            echo "<tr class='".$status_color."' style='cursor:pointer;' onclick='window.location.href=\"" . get_permalink($GLOBALS['page_detail_id']) . "?ticket_id=" .$ticket->id."\";'>";
             echo "<td>".$ticket->id."</td>";
             echo "<td><span class='label label-".$status_color."' style='font-size: 13px;'>".ucfirst($ticket->status)."<span></td>";
             echo "<td>".substr($ticket->sujet, 0,20)."...</td>";
